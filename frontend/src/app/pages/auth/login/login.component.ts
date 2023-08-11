@@ -10,5 +10,5 @@ export class LoginComponent {
   loginForm: FormGroup = new FormGroup({
     login: new FormControl(),
     password: new FormControl(),
-  })
+  });
 }
