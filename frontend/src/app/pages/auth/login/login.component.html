@@ -1,5 +1,5 @@
-<div class="m-auto mt-10 w-72 h-32" [formGroup]="loginForm">
+<div class="m-auto mt-10 w-72 h-32" (ngSubmit)="saveProcess()" [formGroup]="form">
   <app-input formControlName="login" label="Login"></app-input>
   <app-input formControlName="password" label="Password"></app-input>
-  <button type="submit">Login</button>
+  <app-button type="submit">Login</app-button>
 </div>
