@@ -8,5 +8,6 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 export class ButtonComponent {
   @Input() color = 'blue';
   @Input() type = 'submit';
+  @Input() label = 'Submit';
   @Output() onClick = new EventEmitter<any>;
 }

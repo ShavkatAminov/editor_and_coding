@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class HttpClientService {
 
-  serverUrl = 'http://localhost:4200/';
+  serverUrl = 'http://localhost:3000/';
   private headers = new HttpHeaders().append('Content-Type', 'application/json');
   constructor(private httpClient: HttpClient, private route: Router) {}
 

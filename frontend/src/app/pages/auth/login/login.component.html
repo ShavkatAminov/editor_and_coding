@@ -1,5 +1,6 @@
-<div class="m-auto mt-10 w-72 h-32" (ngSubmit)="saveProcess()" [formGroup]="form">
+<form class="m-auto mt-10 w-72 h-32" [formGroup]="form" (ngSubmit)="saveProcess()">
   <app-input formControlName="login" label="Login"></app-input>
   <app-input formControlName="password" label="Password"></app-input>
-  <app-button type="submit">Login</app-button>
-</div>
+  <app-button  type="submit">Login</app-button>
+  <a routerLink="/auth/sign-up">Registration</a>
+</form>

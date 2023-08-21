@@ -7,12 +7,12 @@ import {HttpClientService} from "../http/http.client.service";
 import {ErrorCodes} from "../http/errorCodes";
 import {requestTypes} from "../http/http.requests";
 
+@Injectable()
 export abstract class BasicForm implements OnDestroy {
 
   form!: FormGroup;
   private subscription$: Subscription = new Subscription();
   protected errorMessages: any = {};
-  private afterSaveBtnClick = false;
 
   constructor(public http: HttpClientService) { }
 
@@ -31,7 +31,7 @@ export abstract class BasicForm implements OnDestroy {
   saveCallback(result: Object): void { }
 
   errorCallback(error: Object): void {
-    if(error instanceof HttpErrorResponse) {
+    /*if(error instanceof HttpErrorResponse) {
       if(error.status === ErrorCodes.BAD_REQUEST) {
         let errors = error.error.errors;
         if(errors && errors.length > 0) {
@@ -48,7 +48,7 @@ export abstract class BasicForm implements OnDestroy {
           })
         }
       }
-    }
+    }*/
   }
 
   afterSave(): void {}
@@ -78,7 +78,6 @@ export abstract class BasicForm implements OnDestroy {
   }
 
   public saveProcess() {
-    this.afterSaveBtnClick = true;
     this.beforeSave();
     this.validateForm();
     if (this.form?.valid || this.form == null) {
@@ -93,7 +92,7 @@ export abstract class BasicForm implements OnDestroy {
 
   showError(formControlName: string): boolean {
     let formControl = this.form.get(formControlName);
-    return formControl!.status == 'INVALID' && formControl!.touched && this.afterSaveBtnClick;
+    return formControl!.status == 'INVALID' && formControl!.touched;
   }
 
   /*errorMessage(formControlName: string) {

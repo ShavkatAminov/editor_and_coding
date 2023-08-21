@@ -1,1 +1,6 @@
-<p>sign-up works!</p>
+<form class="m-auto mt-10 w-72 h-32" [formGroup]="form" (ngSubmit)="saveProcess()">
+  <app-input formControlName="login" label="Login"></app-input>
+  <app-input formControlName="password" label="Password"></app-input>
+  <app-input formControlName="password_repeat" label="Repeat password"></app-input>
+  <app-button  type="submit">Sign up</app-button>
+</form>
