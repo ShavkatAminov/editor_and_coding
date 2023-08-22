@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-import {BasicForm} from "../../../shared/form/basic.form";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {FormRequest} from "../../../core/request/FormRequest";
-import {HttpClientService} from "../../../core/http/http.client.service";
-import {UserService} from "../../../core/user/UserService";
 import {LoginComponent} from "../login/login.component";
 
 @Component({
