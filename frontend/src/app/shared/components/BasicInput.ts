@@ -13,6 +13,7 @@ export default class BasicInput implements ControlValueAccessor, OnInit {
   }
 
   @Input() label = '';
+  @Input() errorMessage = '';
   control: FormControl = new FormControl();
 
   protected onChange: Function = (value: any) => {};

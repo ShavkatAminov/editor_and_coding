@@ -4,13 +4,15 @@ import {InputComponent} from './components/input/input.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import BasicInput from "./components/BasicInput";
 import { ButtonComponent } from './components/button/button.component';
+import {ErrorPopoverComponent} from "./components/error-popover/error-popover.component";
 
 
 @NgModule({
   declarations: [
     InputComponent,
     BasicInput,
-    ButtonComponent
+    ButtonComponent,
+    ErrorPopoverComponent,
   ],
     exports: [
         InputComponent,

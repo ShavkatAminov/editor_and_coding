@@ -16,6 +16,4 @@ import BasicInput from "../BasicInput";
 })
 export class InputComponent extends BasicInput{
 
-
-
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {BasicForm} from "../../../core/basic/basic.form";
+import {BasicForm} from "../../../shared/form/basic.form";
 import {FormRequest} from "../../../core/request/FormRequest";
 
 @Component({

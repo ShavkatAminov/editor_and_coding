@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {BasicForm} from "../../../core/basic/basic.form";
-import {FormControl, FormGroup} from "@angular/forms";
+import {BasicForm} from "../../../shared/form/basic.form";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-sign-up',
@@ -9,8 +9,8 @@ import {FormControl, FormGroup} from "@angular/forms";
 })
 export class SignUpComponent extends BasicForm {
   override form: FormGroup = new FormGroup({
-    login: new FormControl(),
-    password: new FormControl(),
-    password_repeat: new FormControl(),
+    login: new FormControl(null, [Validators.required]),
+    password: new FormControl(null, [Validators.required]),
+    password_repeat: new FormControl(null, [Validators.required]),
   });
 }
