@@ -15,6 +15,7 @@ export class SignUpComponent extends BasicForm {
     username: new FormControl(null, [Validators.required]),
     password: new FormControl(null, [Validators.required]),
     firstname: new FormControl(null, [Validators.required]),
+    email: new FormControl(null, [Validators.required, Validators.email]),
     lastname: new FormControl(null, [Validators.required]),
     password_repeat: new FormControl(null, [Validators.required]),
   });

@@ -21,7 +21,7 @@ export class UsersService {
         user.username = signUpDto.username;
         user.lastname = signUpDto.lastname;
         user.password = signUpDto.password;
-        await this.usersRepository.save(user);
+        user = await this.usersRepository.save(user);
         return this.addToken(user);
     }
 
@@ -39,6 +39,7 @@ export class UsersService {
         return {
             access_token: await this.jwtService.signAsync({
                 username: user.username,
+                sub: user.id
             }),
             ...user,
         }
