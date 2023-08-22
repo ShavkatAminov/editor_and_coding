@@ -5,6 +5,14 @@ import {Injectable} from "@angular/core";
 })
 export class UserService {
   isLogged = false;
-  constructor() {
+  access_token: string = '';
+
+  login(access_token: string) {
+    this.access_token = access_token;
+    this.isLogged = true;
+  }
+  logout() {
+    this.access_token = "";
+    this.isLogged = false;
   }
 }

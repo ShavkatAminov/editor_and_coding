@@ -2,13 +2,16 @@ import { Component } from '@angular/core';
 import {BasicForm} from "../../../shared/form/basic.form";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {FormRequest} from "../../../core/request/FormRequest";
+import {HttpClientService} from "../../../core/http/http.client.service";
+import {UserService} from "../../../core/user/UserService";
+import {LoginComponent} from "../login/login.component";
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css']
 })
-export class SignUpComponent extends BasicForm {
+export class SignUpComponent extends LoginComponent {
 
   override request = new FormRequest('users/sign-up');
   override form: FormGroup = new FormGroup({
@@ -20,8 +23,4 @@ export class SignUpComponent extends BasicForm {
     password_repeat: new FormControl(null, [Validators.required]),
   });
 
-  override saveCallback(result: Object) {
-    super.saveCallback(result);
-    console.log(result);
-  }
 }
