@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {InputComponent} from './components/input/input.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import BasicInput from "./components/BasicInput";
-import { ButtonComponent } from './components/button/button.component';
+import {ButtonComponent} from './components/button/button.component';
 import {ErrorPopoverComponent} from "./components/error-popover/error-popover.component";
 
 
@@ -14,10 +14,10 @@ import {ErrorPopoverComponent} from "./components/error-popover/error-popover.co
     ButtonComponent,
     ErrorPopoverComponent,
   ],
-    exports: [
-        InputComponent,
-        ButtonComponent
-    ],
+  exports: [
+    InputComponent,
+    ButtonComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule
