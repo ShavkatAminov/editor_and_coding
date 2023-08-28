@@ -1,6 +1,6 @@
-import {Column, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 
-
+@Entity()
 export class Problem {
     @PrimaryGeneratedColumn()
     id: number;
@@ -19,5 +19,4 @@ export class Problem {
 
     @Column()
     memoryLimit: number;
-
 }
