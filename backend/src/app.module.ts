@@ -6,6 +6,8 @@ import { UsersModule } from './users/users.module';
 import {User} from "./users/entities/user.entity";
 import { ProblemsModule } from './problems/problems.module';
 import {Problem} from "./problems/entities/problem.entity";
+import { AdminModule } from './admin/admin.module';
+import {RouterModule} from "@nestjs/core";
 
 @Module({
   imports: [
@@ -21,6 +23,13 @@ import {Problem} from "./problems/entities/problem.entity";
     }),
     UsersModule,
     ProblemsModule,
+    AdminModule,
+    RouterModule.register([
+      {
+        path: 'admin',
+        module: AdminModule,
+      }
+    ])
   ],
   controllers: [AppController],
   providers: [AppService],
