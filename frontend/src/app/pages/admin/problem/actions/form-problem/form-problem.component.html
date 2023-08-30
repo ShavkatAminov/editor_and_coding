@@ -1,0 +1,7 @@
+<form class="m-auto" [formGroup]="form" (ngSubmit)="saveProcess()">
+    <app-input formControlName="fullName" [errorMessage]="errorMessage('fullName')" label="Full name"></app-input>
+    <app-input formControlName="content" [errorMessage]="errorMessage('content')" label="Content"></app-input>
+    <app-input formControlName="status" [errorMessage]="errorMessage('status')" label="Status"></app-input>
+    <app-input formControlName="timeLimit" [errorMessage]="errorMessage('timeLimit')" label="Time Limit"></app-input>
+    <app-input formControlName="memoryLimit" [errorMessage]="errorMessage('memoryLimit')" label="Memory Limit"></app-input>
+</form>

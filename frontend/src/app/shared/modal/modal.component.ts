@@ -4,6 +4,7 @@ import {HostDirective} from "./host.directive";
 import {Observable} from "rxjs";
 import {ModalComponentInterface} from "./modal.component.interface";
 import {InjectorInstance} from "../shared.module";
+import {FormModalComponentInterface} from "../form/form.modal.component.interface";
 
 @Component({
     selector: 'het-modal',
@@ -16,6 +17,10 @@ export class ModalComponent implements OnInit {
                 protected dc: ChangeDetectorRef) {
         this.component = data.component
         this.title = data.title
+    }
+
+    save(){
+        (this.componentModal.instance as FormModalComponentInterface).save();
     }
 
     ngOnInit(): void {
@@ -59,13 +64,12 @@ export class ModalClass {
             data: {component: component, title: title, formData: formData},
             width: ModalClass.setSize(size),
             maxWidth: ModalClass.setSize(size),
-            disableClose: true
         });
         return dialogRef.afterClosed();
     }
 
     public static setSize(size: number) {
-        let modalSize = "100%"
+        let modalSize: string = "100%"
         if (size === 0) {
             modalSize = "30vw"
         }

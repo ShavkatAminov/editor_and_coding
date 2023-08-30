@@ -70,6 +70,7 @@ export abstract class BasicForm extends FormError implements OnDestroy {
   }
 
   public saveProcess() {
+    console.log('saveProcess');
     this.beforeSave();
     this.validateForm();
     if (this.form?.valid || this.form == null) {
