@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {Injector, NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {InputComponent} from './components/input/input.component';
 import {ReactiveFormsModule} from "@angular/forms";
@@ -7,8 +7,12 @@ import {ButtonComponent} from './components/button/button.component';
 import {ErrorPopoverComponent} from "./components/error-popover/error-popover.component";
 import { TableComponent } from './components/table/table.component';
 import { PaginationComponent } from './components/table/pagination/pagination.component';
+import {HostDirective} from "./modal/host.directive";
+import {ModalComponent} from "./modal/modal.component";
+import {CdkDrag, CdkDragHandle} from "@angular/cdk/drag-drop";
+import {MatDialogModule} from "@angular/material/dialog";
 
-
+export let InjectorInstance: Injector;
 @NgModule({
   declarations: [
     InputComponent,
@@ -17,6 +21,8 @@ import { PaginationComponent } from './components/table/pagination/pagination.co
     ErrorPopoverComponent,
     TableComponent,
     PaginationComponent,
+    HostDirective,
+    ModalComponent
   ],
   exports: [
     InputComponent,
@@ -25,8 +31,14 @@ import { PaginationComponent } from './components/table/pagination/pagination.co
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CdkDrag,
+    CdkDragHandle,
+    MatDialogModule
   ]
 })
 export class SharedModule {
+  constructor(public injector:Injector) {
+    InjectorInstance = injector
+  }
 }
