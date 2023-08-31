@@ -17,6 +17,7 @@ export class TableComponent implements OnInit {
   data: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   ngOnInit(): void {
+    this.load();
   }
 
   load() {
