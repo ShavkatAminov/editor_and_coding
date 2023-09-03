@@ -1,5 +1,6 @@
 
 export interface ColumnDefinition {
   header: string;
-  value: string;
+  value?: string;
+  type?: string,
 }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ColumnDefinition} from "./ColumnDefinition";
 import {BehaviorSubject} from "rxjs";
 import {AbstractSearch} from "./AbstractSearch";
@@ -13,6 +13,7 @@ export class TableComponent implements OnInit {
   constructor(private http: HttpClientService) {}
   @Input() columns: ColumnDefinition[] = [];
   @Input() request!: AbstractSearch;
+  @Output() editClicked: EventEmitter<number> = new EventEmitter<number>();
 
   data: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 

@@ -20,8 +20,13 @@ export class ProblemComponent {
       header: 'Full Name',
       value: 'fullName',
     },
+    {
+      header: 'Action',
+      type: 'edit',
+    },
   ];
   openForm(id: number = 0) {
-    ModalClass.showModal(FormProblemComponent, 'Problem')
+    ModalClass.showModal(FormProblemComponent, 'Problem', id);
   }
+
 }
