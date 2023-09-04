@@ -28,6 +28,10 @@ export const appRoutes: Routes = [
       {
         path: 'admin',
         loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule),
+      },
+      {
+        path: 'problems',
+        loadChildren: () => import('./pages/problems/problems.module').then(m => m.ProblemsModule),
       }
     ]
   }

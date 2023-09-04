@@ -9,7 +9,7 @@ export class ProblemsController {
     }
 
     @Get()
-    findAll(@Query() listDto: ListDto): Promise<[Problem[], number]> {
+    findAll(@Query('pageable') listDto: ListDto): Promise<[Problem[], number]> {
         return this.problemsService.findAll(listDto);
     }
 
