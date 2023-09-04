@@ -5,7 +5,17 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
   templateUrl: './pagination.component.html',
 })
 export class PaginationComponent {
-  @Input() totalPages: number = 1;
+  totalPages: number = 1;
+  _totalCount = 1;
+  @Input() set totalCount(value: number) {
+    this._totalCount = value;
+    this.totalPages = Math.round((this._totalCount + this.perPage - 1) / this.perPage);
+    console.log(this.totalPages);
+  }
+  get totalCount() {
+    return this._totalCount;
+  }
+  perPage = 10;
   @Input() currentPage: number = 1;
   @Output() changePage: EventEmitter<any> = new EventEmitter<any>();
 

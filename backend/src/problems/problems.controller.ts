@@ -1,6 +1,7 @@
-import {Controller, Get, Param} from '@nestjs/common';
+import {Controller, Get, Param, Query} from '@nestjs/common';
 import {ProblemsService} from './problems.service';
 import {Problem} from "./entities/problem.entity";
+import {ListDto} from "../basic/dto/listDto";
 
 @Controller('problems')
 export class ProblemsController {
@@ -8,8 +9,8 @@ export class ProblemsController {
     }
 
     @Get()
-    findAll(): Promise<Problem[]> {
-        return this.problemsService.findAll();
+    findAll(@Query() listDto: ListDto): Promise<[Problem[], number]> {
+        return this.problemsService.findAll(listDto);
     }
 
     @Get(':id')

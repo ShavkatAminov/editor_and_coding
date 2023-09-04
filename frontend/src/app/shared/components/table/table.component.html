@@ -19,5 +19,5 @@
     </tr>
     </tbody>
   </table>
-  <app-pagination></app-pagination>
+  <app-pagination #pagination (changePage)="changePage($event)"></app-pagination>
 </div>

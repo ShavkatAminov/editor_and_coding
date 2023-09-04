@@ -1,25 +1,30 @@
 import {HttpParams} from "@angular/common/http";
 import {IRequest} from "../../../core/http/IRequest";
+import HttpUtils from "../../../core/http/HttpUtils";
 
 export class AbstractSearch implements IRequest {
   getUri(): string {
     return this.url;
   };
-  params: HttpParams = new HttpParams();
-  body: any = {
-    pageable: new Pageable(),
-  };
+  params!: HttpParams;
 
-  constructor(protected url: string, body = {}) {
+  constructor(protected url: string, private paramsObj: any = {}) {
     this.url = this.url + '';
-
-    this.body = {...this.body, ...body}
+    paramsObj['pageable'] = new Pageable();
+    this.setParams(paramsObj);
   }
 
+  setPage(page: number) {
+    this.paramsObj.pageable.page = page - 1;
+    this.setParams(this.paramsObj);
+  }
 
+  setParams(paramsObj: any) {
+    this.params = HttpUtils.toHttpParams(paramsObj)
+  }
 }
 
 export class Pageable {
-  index: number = 0;
-  size: number = 20;
+  page: number = 0;
+  perPage: number = 10;
 }

@@ -4,7 +4,7 @@ import {HttpParams} from "@angular/common/http";
 export interface IRequest {
     getUri(): string;
 
-    body: object;
+    body?: object;
 
     params: HttpParams;
 }

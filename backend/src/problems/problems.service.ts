@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import {InjectRepository} from "@nestjs/typeorm";
 import {Problem} from "./entities/problem.entity";
 import {Repository} from "typeorm";
+import {ListDto} from "../basic/dto/listDto";
 
 @Injectable()
 export class ProblemsService {
@@ -10,8 +11,15 @@ export class ProblemsService {
       private problemRepository: Repository<Problem>,
   ) {}
 
-  async findAll(): Promise<Problem[]> {
-    return this.problemRepository.find();
+  async findAll(listDto: ListDto): Promise<any> {
+     const [data, count] = await this.problemRepository.findAndCount({
+      take: listDto.perPage,
+      skip: listDto.page * listDto.perPage,
+    });
+    return {
+      data: data,
+      count: count,
+    }
   }
 
   async findOne(id: number): Promise<Problem | null> {

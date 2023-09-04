@@ -1,14 +1,15 @@
-import {Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post, Put} from '@nestjs/common';
+import {Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post, Put, Query} from '@nestjs/common';
 import {ProblemsService} from "../../problems/problems.service";
 import {Problem} from "../../problems/entities/problem.entity";
+import {ListDto} from "../../basic/dto/listDto";
 
 @Controller('problem')
 export class ProblemController {
     constructor(private readonly problemsService: ProblemsService) {}
 
     @Get()
-    async findAll(): Promise<Problem[]> {
-        return this.problemsService.findAll();
+    async findAll(@Query('pageable') listDto: ListDto = new ListDto()): Promise<[Problem[], number]> {
+        return this.problemsService.findAll(listDto);
     }
 
     //get Problem by id

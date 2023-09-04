@@ -1,8 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {ColumnDefinition} from "./ColumnDefinition";
 import {BehaviorSubject} from "rxjs";
-import {AbstractSearch} from "./AbstractSearch";
+import {AbstractSearch, Pageable} from "./AbstractSearch";
 import {HttpClientService} from "../../../core/http/http.client.service";
+import {PaginationComponent} from "./pagination/pagination.component";
 
 @Component({
   selector: 'app-table',
@@ -17,13 +18,22 @@ export class TableComponent implements OnInit {
 
   data: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
+  @ViewChild('pagination') pagination!: PaginationComponent;
+
   ngOnInit(): void {
     this.load();
   }
 
+
+  changePage(page: number) {
+    this.request.setPage(page);
+    this.load();
+  }
+
   load() {
-    this.http.request(this.request).subscribe((result) => {
-      this.data.next(result);
+    this.http.request(this.request).subscribe((result: any) => {
+      this.data.next(result.data);
+      this.pagination.totalCount = result.count;
     })
   }
 }
