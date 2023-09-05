@@ -13,7 +13,7 @@
       <td *ngFor="let columnItem of columns" scope="col" class="px-6 py-3">
         <ng-container *ngIf="columnItem.value">{{dataItem[columnItem.value]}}
         </ng-container>
-        <ng-container *ngIf="columnItem.type === 'edit'"><app-button (onClick)="this.editClicked.emit(dataItem.id)">Edit</app-button>
+        <ng-container *ngIf="columnItem.type === 'button'"><app-button (onClick)="this.editClicked.emit(dataItem.id)">{{columnItem.value}}</app-button>
         </ng-container>
       </td>
     </tr>

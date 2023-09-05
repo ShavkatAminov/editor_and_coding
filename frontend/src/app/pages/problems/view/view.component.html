@@ -1,0 +1,17 @@
+
+
+<div class="flex">
+  <div class="flex-1">
+    <h2 class="text-4xl font-extrabold dark:text-white">{{problem.fullName}}</h2>
+    <p>Memory limit: {{problem.memoryLimit}} ms</p>
+    <p>Time limit: {{problem.timeLimit}} ms</p>
+    <div>{{problem.content}}</div>
+  </div>
+  <div class="flex-1">
+    <ngs-code-editor
+      [theme]="'vs-dark'"
+      [codeModel]="model"
+      [options]="options">
+    </ngs-code-editor>
+  </div>
+</div>
