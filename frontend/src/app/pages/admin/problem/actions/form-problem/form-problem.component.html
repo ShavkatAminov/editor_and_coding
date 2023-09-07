@@ -1,7 +1,23 @@
 <form class="m-auto" [formGroup]="form" (ngSubmit)="saveProcess()">
     <app-input formControlName="fullName" [errorMessage]="errorMessage('fullName')" label="Full name"></app-input>
-    <app-input formControlName="content" [errorMessage]="errorMessage('content')" label="Content"></app-input>
+    <app-textarea formControlName="content" [errorMessage]="errorMessage('content')" label="Content"></app-textarea>
     <app-input formControlName="status" [errorMessage]="errorMessage('status')" label="Status"></app-input>
     <app-input formControlName="timeLimit" [errorMessage]="errorMessage('timeLimit')" label="Time Limit"></app-input>
     <app-input formControlName="memoryLimit" [errorMessage]="errorMessage('memoryLimit')" label="Memory Limit"></app-input>
+    <ng-container formArrayName="tests">
+        <ng-container *ngFor="let testForm of tests.controls; let i = index">
+            <div class="flex" [formGroup]="testForm">
+                <div class="flex-1">
+                    <app-textarea formControlName="input" [errorMessage]="errorMessage('input', testForm)" ></app-textarea>
+                </div>
+                <div class="flex-1">
+                    <app-textarea formControlName="output" [errorMessage]="errorMessage('output', testForm)"></app-textarea>
+                </div>
+                <div>
+                    <app-button [type]="'button'" (onClick)="deleteTest(i)">Delete</app-button>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+    <app-button [type]="'button'" (onClick)="addTest()">Add</app-button>
 </form>

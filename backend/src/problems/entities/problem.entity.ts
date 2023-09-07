@@ -1,4 +1,5 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
+import {TestProblem} from "./test.problem.entity";
 
 @Entity()
 export class Problem {
@@ -19,4 +20,10 @@ export class Problem {
 
     @Column()
     memoryLimit: number;
+
+    @Column()
+    pretestCount: number;
+
+    @OneToMany(() => TestProblem, (test => test.problem))
+    tests: TestProblem[];
 }

@@ -12,8 +12,8 @@ export class FormError {
   form!: FormGroup;
 
 
-  errorMessage(formControlName: string) {
-    let formControl: any = this.form.get(formControlName);
+  errorMessage(formControlName: string, form = this.form) {
+    let formControl: any = form.get(formControlName);
     let result = "";
     if(formControl && formControl!.status == 'INVALID' && formControl!.touched) {
       const controlErrors: ValidationErrors = formControl.errors;

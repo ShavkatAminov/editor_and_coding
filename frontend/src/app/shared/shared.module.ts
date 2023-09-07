@@ -11,6 +11,7 @@ import {HostDirective} from "./modal/host.directive";
 import {ModalComponent} from "./modal/modal.component";
 import {CdkDrag, CdkDragHandle} from "@angular/cdk/drag-drop";
 import {MatDialogModule} from "@angular/material/dialog";
+import { TextareaComponent } from './components/textarea/textarea.component';
 
 export let InjectorInstance: Injector;
 @NgModule({
@@ -22,13 +23,15 @@ export let InjectorInstance: Injector;
     TableComponent,
     PaginationComponent,
     HostDirective,
-    ModalComponent
+    ModalComponent,
+    TextareaComponent
   ],
-  exports: [
-    InputComponent,
-    ButtonComponent,
-    TableComponent
-  ],
+    exports: [
+        InputComponent,
+        ButtonComponent,
+        TableComponent,
+        TextareaComponent
+    ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

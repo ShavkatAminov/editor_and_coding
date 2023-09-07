@@ -1,6 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {AbstractSearch} from "../../../shared/components/table/AbstractSearch";
-import {ModalClass} from "../../../shared/modal/modal.component";
+import {ModalClass, SizeModal} from "../../../shared/modal/modal.component";
 import {FormProblemComponent} from "./actions/form-problem/form-problem.component";
 import {ColumnDefinition} from "../../../shared/components/table/ColumnDefinition";
 import {TableComponent} from "../../../shared/components/table/table.component";
@@ -31,7 +31,7 @@ export class ProblemComponent {
   @ViewChild('table') table!: TableComponent;
 
   openForm(id: number = 0) {
-    ModalClass.showModal(FormProblemComponent, 'Problem', id).subscribe(res => {
+    ModalClass.showModal(FormProblemComponent, 'Problem', id, SizeModal.md).subscribe(res => {
       if(res) {
         this.table.load();
       }

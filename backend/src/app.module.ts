@@ -8,6 +8,7 @@ import { ProblemsModule } from './problems/problems.module';
 import {Problem} from "./problems/entities/problem.entity";
 import { AdminModule } from './admin/admin.module';
 import {RouterModule} from "@nestjs/core";
+import {TestProblem} from "./problems/entities/test.problem.entity";
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import {RouterModule} from "@nestjs/core";
       username: 'root',
       password: '',
       database: 'editor',
-      entities: [User, Problem],
+      entities: [User, Problem, TestProblem],
       synchronize: true,
     }),
     UsersModule,
