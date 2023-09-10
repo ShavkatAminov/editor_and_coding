@@ -1,2 +1,9 @@
 
+.env
+
 /.idea
+
+# docker
+/docker/database/data
+/docker/database-test/data
+/docker/logs/nginx

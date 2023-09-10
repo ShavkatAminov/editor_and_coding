@@ -15,9 +15,9 @@ config();
 export default new DataSource({
     type: 'mysql',
     host: 'localhost',
-    port: 3306,
-    username: 'root',
-    password: '',
+    port: 4306,
+    username: 'user',
+    password: 'user',
     database: 'editor',
     migrations: [Migration1688515712879, Migration1688586276261, Migration1693263098190, Migration1693938041389],
     migrationsTableName: 'migrations',
