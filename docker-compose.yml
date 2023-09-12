@@ -44,8 +44,7 @@ services:
     depends_on:
       - nest-docker
     volumes:
-      - ./frontend/src:/app/src
-
+      - ./frontend/src:/www/src
 
   rabbitmq:
     image: rabbitmq:3.10.7-management
