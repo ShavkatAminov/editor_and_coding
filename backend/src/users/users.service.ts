@@ -39,7 +39,9 @@ export class UsersService {
         return {
             access_token: await this.jwtService.signAsync({
                 username: user.username,
-                sub: user.id
+                sub: user.id,
+            }, {
+                expiresIn: '2 days',
             }),
             ...user,
         }

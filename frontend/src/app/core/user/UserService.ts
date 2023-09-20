@@ -24,5 +24,6 @@ export class UserService {
   logout() {
     this.access_token = "";
     this.isLogged = false;
+    this.local.removeData(UserService.ACCESS_TOKEN);
   }
 }

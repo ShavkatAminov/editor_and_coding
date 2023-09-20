@@ -23,16 +23,24 @@ export class ProblemsService {
   }
 
   async findOne(id: number): Promise<Problem | null> {
-    return this.problemRepository.findOne({ where: { id } });
+    return this.problemRepository.findOne({
+      where: { id },
+      relations: {tests: true},
+    });
   }
 
-  async create(Problem: Partial<Problem>): Promise<Problem> {
-    const newProblem = this.problemRepository.create(Problem);
+  async create(problem: Partial<Problem>): Promise<Problem> {
+    problem.pretestCount = problem.tests?.length;
+    const newProblem = this.problemRepository.create(problem);
     return this.problemRepository.save(newProblem);
   }
 
-  async update(id: number, Problem: Partial<Problem>): Promise<Problem | null> {
-    await this.problemRepository.update(id, Problem);
+  async update(id: number, problem: Partial<Problem>): Promise<Problem | null> {
+    const problemObj  = await this.problemRepository.findOne({ where: { id } });
+    if(problemObj) {
+      Object.assign(problemObj, problem);
+      await this.problemRepository.save(problemObj);
+    }
     return this.problemRepository.findOne({ where: { id } });
   }
 

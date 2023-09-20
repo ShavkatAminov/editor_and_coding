@@ -3,6 +3,7 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angul
 import {BasicModalForm} from "../../../../../shared/form/basic.modal.form";
 import {FormRequest} from "../../../../../core/request/FormRequest";
 import {HttpClientService} from "../../../../../core/http/http.client.service";
+import {data} from "autoprefixer";
 
 @Component({
   selector: 'app-form-problem',
@@ -29,8 +30,19 @@ export class FormProblemComponent extends BasicModalForm {
     return this.form.controls["tests"] as FormArray<FormGroup>;
   }
 
+  override setData(data: any) {
+    super.setData(data, (res: any) => {
+      if(res && res.tests) {
+        res.tests.forEach(() => {
+          this.addTest();
+        })
+      }
+    });
+  }
+
   addTest() {
     let testForm = new FormGroup({
+      id: new FormControl(null),
       input: new FormControl(null, [Validators.required]),
       output: new FormControl(null, [Validators.required]),
     });

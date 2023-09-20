@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {requestTypes} from "./http.requests";
 import {IRequest} from "./IRequest";
 import {catchError, Observable, of, throwError} from "rxjs";
 import {Router} from "@angular/router";
+import {ErrorCodes} from "./errorCodes";
+import {UserService} from "../user/UserService";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,10 @@ export class HttpClientService {
 
   serverUrl = 'http://localhost:3000/';
   private headers = new HttpHeaders().append('Content-Type', 'application/json');
-  constructor(private httpClient: HttpClient, private route: Router) {}
+
+  constructor(private httpClient: HttpClient, private route: Router, private userService: UserService) {
+    this.headers = this.headers.set('Authorization', 'Bearer ' + this.userService.access_token);
+  }
 
 
   request(request: IRequest, method: requestTypes = "get"): Observable<Object> {
@@ -21,26 +26,27 @@ export class HttpClientService {
       params: request.params,
       body: JSON.stringify(request.body, HttpClientService.JSONParser)
     }).pipe(
-        catchError((error) => {
-          //this.onErrorHandler(error);
-          return throwError(error);
-        })
+      catchError((error) => {
+        this.onErrorHandler(error);
+        return throwError(error);
+      })
     );
   }
 
-  /*public onErrorHandler(error: any): Observable<Object> {
+  public onErrorHandler(error: any): Observable<string> {
     if (error instanceof HttpErrorResponse) {
       if (error.error instanceof ErrorEvent) {
       } else {
         switch (error.status) {
-          case ErrorCodes.FORBIDDEN:
-            this.route.navigate(['sign-out']);
+          case ErrorCodes.UNAUTHORIZED:
+            this.userService.logout();
+            this.route.navigate(['auth/sign-in']);
             break;
         }
       }
-      return of({});
     }
-  }*/
+    return of("");
+  }
 
   public static JSONParser(k: any, v: any) {
     if (v instanceof Set || v instanceof Map)

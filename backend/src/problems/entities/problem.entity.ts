@@ -24,6 +24,6 @@ export class Problem {
     @Column()
     pretestCount: number;
 
-    @OneToMany(() => TestProblem, (test => test.problem))
+    @OneToMany(type => TestProblem, (test => test.problem), { cascade: true, eager: true })
     tests: TestProblem[];
 }

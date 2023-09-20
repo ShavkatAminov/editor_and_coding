@@ -10,7 +10,6 @@ export class PaginationComponent {
   @Input() set totalCount(value: number) {
     this._totalCount = value;
     this.totalPages = Math.round((this._totalCount + this.perPage - 1) / this.perPage);
-    console.log(this.totalPages);
   }
   get totalCount() {
     return this._totalCount;

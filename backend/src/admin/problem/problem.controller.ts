@@ -25,14 +25,14 @@ export class ProblemController {
 
     //create Problem
     @Post()
-    async create(@Body() Problem: Problem): Promise<Problem> {
-        return this.problemsService.create(Problem);
+    async create(@Body() problem: Problem): Promise<Problem> {
+        return this.problemsService.create(problem);
     }
 
     //update Problem
     @Put(':id')
-    async update (@Param('id') id: number, @Body() Problem: Problem): Promise<any> {
-        return this.problemsService.update(id, Problem);
+    async update (@Param('id') id: number, @Body() problem: Problem): Promise<any> {
+        return this.problemsService.update(id, problem);
     }
 
     //delete Problem
