@@ -16,11 +16,11 @@ export class HttpClientService {
   private headers = new HttpHeaders().append('Content-Type', 'application/json');
 
   constructor(private httpClient: HttpClient, private route: Router, private userService: UserService) {
-    this.headers = this.headers.set('Authorization', 'Bearer ' + this.userService.access_token);
   }
 
 
   request(request: IRequest, method: requestTypes = "get"): Observable<Object> {
+    this.headers = this.headers.set('Authorization', 'Bearer ' + this.userService.access_token);
     return this.httpClient.request(method, this.serverUrl + request.getUri(), {
       headers: this.headers,
       params: request.params,
