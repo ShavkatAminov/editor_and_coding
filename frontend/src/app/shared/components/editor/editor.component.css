@@ -1,0 +1,4 @@
+
+::ng-deep div.monaco-editor, div.overflow-guard {
+  height: 100% !important;
+}

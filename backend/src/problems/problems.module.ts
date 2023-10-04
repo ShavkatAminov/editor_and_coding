@@ -3,10 +3,27 @@ import { ProblemsService } from './problems.service';
 import { ProblemsController } from './problems.controller';
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {Problem} from "./entities/problem.entity";
+import {RabbitService} from "./rabbit/rabbit.service";
+import {ClientsModule, Transport} from "@nestjs/microservices";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Problem])],
+  imports: [TypeOrmModule.forFeature([Problem]),
+    ClientsModule.register([
+      {
+        name: 'rabbit-mq-module',
+        transport: Transport.RMQ,
+        options: {
+          urls: [
+            'amqp://localhost:5672',
+          ],
+          queue: 'editor',
+          queueOptions: {
+            durable: false
+          },
+        },
+      },
+    ]),],
   controllers: [ProblemsController],
-  providers: [ProblemsService]
+  providers: [ProblemsService, RabbitService]
 })
 export class ProblemsModule {}

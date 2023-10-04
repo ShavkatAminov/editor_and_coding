@@ -12,6 +12,8 @@ import {ModalComponent} from "./modal/modal.component";
 import {CdkDrag, CdkDragHandle} from "@angular/cdk/drag-drop";
 import {MatDialogModule} from "@angular/material/dialog";
 import { TextareaComponent } from './components/textarea/textarea.component';
+import { EditorComponent } from './components/editor/editor.component';
+import {CodeEditorModule} from "@ngstack/code-editor";
 
 export let InjectorInstance: Injector;
 @NgModule({
@@ -24,20 +26,23 @@ export let InjectorInstance: Injector;
     PaginationComponent,
     HostDirective,
     ModalComponent,
-    TextareaComponent
+    TextareaComponent,
+    EditorComponent
   ],
-    exports: [
-        InputComponent,
-        ButtonComponent,
-        TableComponent,
-        TextareaComponent
-    ],
+  exports: [
+    InputComponent,
+    ButtonComponent,
+    TableComponent,
+    TextareaComponent,
+    EditorComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     CdkDrag,
     CdkDragHandle,
-    MatDialogModule
+    MatDialogModule,
+    CodeEditorModule
   ]
 })
 export class SharedModule {

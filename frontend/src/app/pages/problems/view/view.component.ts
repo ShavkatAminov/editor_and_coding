@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {FormRequest} from "../../../core/request/FormRequest";
 import {HttpClientService} from "../../../core/http/http.client.service";
 import {Problem} from "../problem.entity";
-import {CodeModel} from "@ngstack/code-editor";
 
 @Component({
   selector: 'app-view',
@@ -13,18 +12,18 @@ import {CodeModel} from "@ngstack/code-editor";
 export class ViewComponent implements OnInit{
   constructor(private router: ActivatedRoute, private http: HttpClientService) {}
 
-  model: CodeModel = {
-    language: 'typescript',
-    uri: 'main.json',
-    value: '',
-  };
+  request: FormRequest = new FormRequest('problems/previous-check');
 
-  options = {
-    contextmenu: true,
-    minimap: {
-      enabled: true,
-    },
-  };
+  editorValueChange(code: string) {
+    this.request.body['content'] = code;
+  }
+
+
+  sendToCheck() {
+    this.http.request(this.request, 'post').subscribe(res => {
+
+    });
+  }
 
   problem: Problem = new Problem();
   ngOnInit(): void {
