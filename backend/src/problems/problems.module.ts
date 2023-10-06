@@ -17,9 +17,6 @@ import {ClientsModule, Transport} from "@nestjs/microservices";
             'amqp://localhost:5672',
           ],
           queue: 'editor',
-          queueOptions: {
-            durable: false
-          },
         },
       },
     ]),],

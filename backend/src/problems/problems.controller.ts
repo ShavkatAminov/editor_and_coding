@@ -1,4 +1,4 @@
-import {Controller, Get, Param, Post, Query} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post, Query} from '@nestjs/common';
 import {ProblemsService} from './problems.service';
 import {Problem} from "./entities/problem.entity";
 import {ListDto} from "../basic/dto/listDto";
@@ -23,7 +23,7 @@ export class ProblemsController {
     }
 
     @Post('previous-check')
-    previousCheck(previousCheck: PreviousCheckDto) {
+    previousCheck(@Body() previousCheck: PreviousCheckDto) {
         this.rabbitService.send('previous-check', previousCheck.content);
     }
 }

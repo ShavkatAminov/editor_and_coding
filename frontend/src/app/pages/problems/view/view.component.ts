@@ -29,6 +29,7 @@ export class ViewComponent implements OnInit{
   ngOnInit(): void {
     this.router.queryParams.subscribe(res => {
       this.getProblem(res['id']);
+      this.request.body['problemId'] = res['id'];
     })
   }
 
