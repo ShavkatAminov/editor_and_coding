@@ -1,9 +1,9 @@
 import { NestFactory } from '@nestjs/core';
+require('dotenv').config();
 import { AppModule } from './app.module';
-import {Transport} from "@nestjs/microservices";
-
+import {MicroserviceOptions, Transport} from "@nestjs/microservices";
 async function bootstrap() {
-  const app = await NestFactory.createMicroservice(AppModule, {
+  const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
     transport: Transport.RMQ,
     options: {
       urls: [

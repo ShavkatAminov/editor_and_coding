@@ -1,15 +1,21 @@
-import {Body, Controller, Get, Param, Post, Query} from '@nestjs/common';
+import {Body, Controller, Get, NotFoundException, Param, Post, Query} from '@nestjs/common';
 import {ProblemsService} from './problems.service';
 import {Problem} from "./entities/problem.entity";
 import {ListDto} from "../basic/dto/listDto";
 import {PreviousCheckDto} from "./dto/previous.check.dto";
-import {MessagePattern} from "@nestjs/microservices";
 import {RabbitService} from "./rabbit/rabbit.service";
+import {RedisCacheService} from "../core/redis.service";
 
 @Controller('problems')
 export class ProblemsController {
     constructor(private readonly problemsService: ProblemsService,
-                private readonly rabbitService: RabbitService,) {
+                private readonly rabbitService: RabbitService,
+                private readonly redisService: RedisCacheService,
+                ) {
+    }
+    @Get('cache-result')
+    cacheResult(@Query('cacheKey') cacheKey: string) {
+        return this.redisService.getValue(cacheKey);
     }
 
     @Get()
@@ -18,12 +24,18 @@ export class ProblemsController {
     }
 
     @Get(':id')
-    findOne(@Param('id') id: string): Promise<Problem | null> {
-        return this.problemsService.findOne(+id);
+    async findOne(@Param('id') id: number): Promise<Problem | null> {
+        const Problem = await this.problemsService.findOne(id);
+        if (!Problem) {
+            throw new NotFoundException('Problem does not exist!');
+        } else {
+            return Problem;
+        }
     }
 
     @Post('previous-check')
     previousCheck(@Body() previousCheck: PreviousCheckDto) {
-        this.rabbitService.send('previous-check', previousCheck.content);
+        return this.rabbitService.send('previous-check', previousCheck);
     }
+
 }

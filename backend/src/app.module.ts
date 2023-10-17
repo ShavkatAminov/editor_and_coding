@@ -11,6 +11,10 @@ import {RouterModule} from "@nestjs/core";
 import {TestProblem} from "./problems/entities/test.problem.entity";
 import * as process from "process";
 import {ConfigModule} from "@nestjs/config";
+import {RedisCacheService} from "./core/redis.service";
+import {CacheModule, CacheStore} from "@nestjs/cache-manager";
+import {RedisClientOptions} from "redis";
+import {redisStore} from "cache-manager-redis-store";
 
 @Module({
   imports: [
@@ -23,7 +27,6 @@ import {ConfigModule} from "@nestjs/config";
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
       entities: [User, Problem, TestProblem],
-      synchronize: true,
     }),
     UsersModule,
     ProblemsModule,
@@ -34,8 +37,11 @@ import {ConfigModule} from "@nestjs/config";
         module: AdminModule,
       }
     ]),
+    CacheModule.register<RedisClientOptions>({
+      store: <CacheStore> <unknown>redisStore,
+    })
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, RedisCacheService],
 })
 export class AppModule {}

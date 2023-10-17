@@ -5,6 +5,10 @@ import {TypeOrmModule} from "@nestjs/typeorm";
 import {Problem} from "./entities/problem.entity";
 import {RabbitService} from "./rabbit/rabbit.service";
 import {ClientsModule, Transport} from "@nestjs/microservices";
+import {CacheModule, CacheStore} from "@nestjs/cache-manager";
+import {RedisClientOptions} from "redis";
+import { redisStore } from 'cache-manager-redis-store';
+import {RedisCacheService} from "../core/redis.service";
 
 @Module({
   imports: [TypeOrmModule.forFeature([Problem]),
@@ -19,8 +23,12 @@ import {ClientsModule, Transport} from "@nestjs/microservices";
           queue: 'editor',
         },
       },
-    ]),],
+    ]),
+    CacheModule.register<RedisClientOptions>({
+      store: <CacheStore> <unknown>redisStore,
+    })
+  ],
   controllers: [ProblemsController],
-  providers: [ProblemsService, RabbitService]
+  providers: [ProblemsService, RabbitService, RedisCacheService]
 })
 export class ProblemsModule {}

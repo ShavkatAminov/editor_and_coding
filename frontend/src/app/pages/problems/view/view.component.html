@@ -7,6 +7,9 @@
   </div>
   <div class="flex-1">
     <editor (valueChange)="editorValueChange($event)"> </editor>
-    <app-button (onClick)="sendToCheck()">Send to previous check</app-button>
+    <app-button (onClick)="sendToCheck()">{{this.codeCheck.buttonCheckText}}</app-button>
+    <app-alert *ngIf="codeCheck.resultStatusClass !== 'hide'" [status]="codeCheck.resultStatusClass">
+      {{codeCheck.resultText}}
+    </app-alert>
   </div>
 </div>

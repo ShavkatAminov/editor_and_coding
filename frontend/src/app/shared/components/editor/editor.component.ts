@@ -11,7 +11,7 @@ export class EditorComponent {
   @Output() valueChange = new EventEmitter<string>();
 
   model: CodeModel = {
-    language: 'typescript',
+    language: 'cpp',
     uri: 'main.json',
     value: '',
   };

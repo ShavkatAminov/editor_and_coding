@@ -14,6 +14,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import { TextareaComponent } from './components/textarea/textarea.component';
 import { EditorComponent } from './components/editor/editor.component';
 import {CodeEditorModule} from "@ngstack/code-editor";
+import { AlertComponent } from './components/alert/alert.component';
 
 export let InjectorInstance: Injector;
 @NgModule({
@@ -27,15 +28,17 @@ export let InjectorInstance: Injector;
     HostDirective,
     ModalComponent,
     TextareaComponent,
-    EditorComponent
+    EditorComponent,
+    AlertComponent
   ],
-  exports: [
-    InputComponent,
-    ButtonComponent,
-    TableComponent,
-    TextareaComponent,
-    EditorComponent
-  ],
+    exports: [
+        InputComponent,
+        ButtonComponent,
+        TableComponent,
+        TextareaComponent,
+        EditorComponent,
+        AlertComponent
+    ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

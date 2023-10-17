@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {FormRequest} from "../../../core/request/FormRequest";
 import {HttpClientService} from "../../../core/http/http.client.service";
 import {Problem} from "../problem.entity";
+import {CodeCheckService} from "./code.check.service";
 
 @Component({
   selector: 'app-view',
@@ -10,7 +11,9 @@ import {Problem} from "../problem.entity";
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent implements OnInit{
-  constructor(private router: ActivatedRoute, private http: HttpClientService) {}
+  constructor(private router: ActivatedRoute,
+              private http: HttpClientService,
+              public codeCheck: CodeCheckService) {}
 
   request: FormRequest = new FormRequest('problems/previous-check');
 
@@ -20,16 +23,13 @@ export class ViewComponent implements OnInit{
 
 
   sendToCheck() {
-    this.http.request(this.request, 'post').subscribe(res => {
-
-    });
+    this.codeCheck.checkCode(this.request);
   }
 
   problem: Problem = new Problem();
   ngOnInit(): void {
     this.router.queryParams.subscribe(res => {
       this.getProblem(res['id']);
-      this.request.body['problemId'] = res['id'];
     })
   }
 
@@ -40,3 +40,4 @@ export class ViewComponent implements OnInit{
     })
   }
 }
+

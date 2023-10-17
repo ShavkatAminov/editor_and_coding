@@ -1,14 +1,14 @@
 
 export class Problem {
-    id!: number;
+    id: number = 0;
 
-    fullName!: string;
+    fullName: string = '';
 
-    content!: string;
+    content: string = '';
 
-    status!: number;
+    status: number = 0;
 
-    timeLimit!: number;
+    timeLimit: number = 0;
 
-    memoryLimit!: number;
+    memoryLimit: number = 0;
 }
