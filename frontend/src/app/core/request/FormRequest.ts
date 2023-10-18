@@ -3,7 +3,7 @@ import {IRequest} from "../http/IRequest";
 
 export class FormRequest implements IRequest {
 
-  constructor(protected url: string, public id: number | null = null) {}
+  constructor(public url: string, public id: number | null = null) {}
 
   getUri(): string {
     return this.url + (this.id ? "/" + this.id : '');

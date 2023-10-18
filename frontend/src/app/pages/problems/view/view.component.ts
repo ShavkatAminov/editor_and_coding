@@ -13,16 +13,32 @@ import {CodeCheckService} from "./code.check.service";
 export class ViewComponent implements OnInit{
   constructor(private router: ActivatedRoute,
               private http: HttpClientService,
-              public codeCheck: CodeCheckService) {}
+              public codeCheck: CodeCheckService,
+              ) {}
 
   request: FormRequest = new FormRequest('problems/previous-check');
 
   editorValueChange(code: string) {
     this.request.body['content'] = code;
+    this.codeCheck.resultStatusClass = 'hide'
+    this.codeCheck.buttonCheckText = 'Check'
+  }
+
+  pretestsCheck() {
+    this.request.body['problemId'] = this.problem.id;
+    this.request.body['fullTest'] = false;
+    this.codeCheck.runTest(this.request);
+  }
+
+  submit() {
+    this.request.body['problemId'] = this.problem.id;
+    this.request.body['fullTest'] = true;
+    this.codeCheck.runTest(this.request);
   }
 
 
   sendToCheck() {
+    this.request.body['problemId'] = null;
     this.codeCheck.checkCode(this.request);
   }
 

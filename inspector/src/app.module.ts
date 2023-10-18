@@ -11,6 +11,8 @@ import {redisStore} from "cache-manager-redis-store";
 import {RedisClientOptions} from "redis";
 import {CacheStore} from "@nestjs/cache-manager/dist/interfaces/cache-manager.interface";
 import {RedisCacheService} from "./service/redis.service";
+import {Problem} from "./models/problem.entity";
+import {ProblemsService} from "./service/problems.service";
 
 @Module({
   imports: [
@@ -22,14 +24,14 @@ import {RedisCacheService} from "./service/redis.service";
           username: process.env.DATABASE_USER,
           password: process.env.DATABASE_PASSWORD,
           database: process.env.DATABASE_NAME,
-          entities: [TestProblem],
+          entities: [TestProblem, Problem],
       }),
-      TypeOrmModule.forFeature([TestProblem]),
+      TypeOrmModule.forFeature([TestProblem, Problem]),
       CacheModule.register<RedisClientOptions>({
           store: <CacheStore> <unknown>redisStore,
       })
   ],
   controllers: [AppController],
-  providers: [AppService, TestService, RedisCacheService],
+  providers: [AppService, TestService, RedisCacheService, ProblemsService],
 })
 export class AppModule {}

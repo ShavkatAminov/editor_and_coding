@@ -2,7 +2,7 @@ import {Body, Controller, Get, NotFoundException, Param, Post, Query} from '@nes
 import {ProblemsService} from './problems.service';
 import {Problem} from "./entities/problem.entity";
 import {ListDto} from "../basic/dto/listDto";
-import {PreviousCheckDto} from "./dto/previous.check.dto";
+import {CheckDto} from "./dto/previous.check.dto";
 import {RabbitService} from "./rabbit/rabbit.service";
 import {RedisCacheService} from "../core/redis.service";
 
@@ -34,8 +34,9 @@ export class ProblemsController {
     }
 
     @Post('previous-check')
-    previousCheck(@Body() previousCheck: PreviousCheckDto) {
+    previousCheck(@Body() previousCheck: CheckDto) {
         return this.rabbitService.send('previous-check', previousCheck);
     }
+
 
 }
