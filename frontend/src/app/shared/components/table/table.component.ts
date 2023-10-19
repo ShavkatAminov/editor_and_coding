@@ -31,9 +31,11 @@ export class TableComponent implements OnInit {
   }
 
   load() {
-    this.http.request(this.request).subscribe((result: any) => {
-      this.data.next(result.data);
-      this.pagination.totalCount = result.count;
-    })
+    if(this.request) {
+      this.http.request(this.request).subscribe((result: any) => {
+        this.data.next(result.data);
+        this.pagination.totalCount = result.count;
+      })
+    }
   }
 }

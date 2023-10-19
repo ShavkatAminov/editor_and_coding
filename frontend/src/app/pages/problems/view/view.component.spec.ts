@@ -2,12 +2,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ViewComponent } from './view.component';
 
+import {imports} from "../../../../test/imports";
 describe('ViewComponent', () => {
   let component: ViewComponent;
   let fixture: ComponentFixture<ViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+    imports: imports,
       declarations: [ ViewComponent ]
     })
     .compileComponents();

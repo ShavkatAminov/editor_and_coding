@@ -3,7 +3,6 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angul
 import {BasicModalForm} from "../../../../../shared/form/basic.modal.form";
 import {FormRequest} from "../../../../../core/request/FormRequest";
 import {HttpClientService} from "../../../../../core/http/http.client.service";
-import {data} from "autoprefixer";
 
 @Component({
   selector: 'app-form-problem',
