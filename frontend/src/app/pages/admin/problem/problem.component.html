@@ -1,4 +1,4 @@
 <div>
-    <app-button (onClick)="openForm()">Add</app-button>
+  <app-button (onClick)="openForm()">+</app-button>
 </div>
 <app-table #table [request]="request" [columns]="columns" (editClicked)="openForm($event)"></app-table>

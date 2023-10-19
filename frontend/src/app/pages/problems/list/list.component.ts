@@ -26,8 +26,7 @@ export class ListComponent {
     },
     {
       header: 'Action',
-      value: 'View',
-      type: 'button',
+      type: 'view',
     },
   ];
 

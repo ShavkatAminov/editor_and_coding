@@ -23,8 +23,7 @@ export class ProblemComponent {
     },
     {
       header: 'Action',
-      type: 'button',
-      value: 'Edit'
+      type: 'edit',
     },
   ];
 
