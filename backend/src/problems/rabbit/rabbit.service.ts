@@ -1,6 +1,5 @@
 import {Inject, Injectable} from '@nestjs/common';
 import {ClientProxy} from "@nestjs/microservices";
-import { time } from 'console';
 import {RedisCacheService} from "../../core/redis.service";
 
 @Injectable()

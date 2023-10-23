@@ -21,7 +21,7 @@ export class Problem {
     @Column()
     memoryLimit: number;
 
-    @Column()
+    @Column({default: 0})
     pretestCount: number;
 
     @OneToMany(type => TestProblem, (test => test.problem), { cascade: true, eager: true })

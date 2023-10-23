@@ -18,6 +18,22 @@ services:
     cap_add:
       - SYS_NICE  # CAP_SYS_NICE
 
+  database-test:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: database_test
+    environment:
+      - MYSQL_DATABASE=${DATABASE_NAME_TEST}
+      - MYSQL_USER=${DATABASE_USER}
+      - MYSQL_PASSWORD=${DATABASE_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DATABASE_ROOT_PASSWORD}
+    ports:
+      - '4307:3306'
+    volumes:
+      - ./docker/database-test/data:/var/lib/mysql
+    cap_add:
+      - SYS_NICE  # CAP_SYS_NICE
+
   app:
     build:
       context: .
