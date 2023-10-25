@@ -3,17 +3,24 @@ import { ProblemsService } from './problems.service';
 import {imports} from "../../test/testing.module";
 import {Problem} from "./entities/problem.entity";
 import {getRepositoryToken} from "@nestjs/typeorm";
+import {Repository} from "typeorm";
 
 describe('ProblemsService', () => {
   let service: ProblemsService;
   let module: TestingModule;
+  let repository: Repository<Problem>;
   beforeEach(async () => {
     module = await Test.createTestingModule({
       imports: imports,
       providers: [ProblemsService]
     }).compile();
-    getRepositoryToken(Problem);
     service = module.get<ProblemsService>(ProblemsService);
+    repository = module.get<Repository<Problem>>(getRepositoryToken(Problem));
+    await repository.query(`SET FOREIGN_KEY_CHECKS=0;`);
+    await repository.query(`TRUNCATE TABLE test_problem`);
+    await repository.query(`TRUNCATE TABLE problem`);
+    await repository.query(`SET FOREIGN_KEY_CHECKS=1;`);
+
   });
 
   it('should be defined', () => {
