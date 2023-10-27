@@ -4,6 +4,7 @@ import {imports} from "../../test/testing.module";
 import {Problem} from "./entities/problem.entity";
 import {getRepositoryToken} from "@nestjs/typeorm";
 import {Repository} from "typeorm";
+import {ListDto} from "../basic/dto/listDto";
 
 describe('ProblemsService', () => {
   let service: ProblemsService;
@@ -61,6 +62,15 @@ describe('ProblemsService', () => {
     await service.delete(problem.id);
     problem = await service.findOne(problem.id);
     expect(problem).toBe(null);
+  });
+
+  it('should get all problem with pageable', async () => {
+    for(let i = 0; i < 100; i ++) {
+      await service.create(newProblem());
+    }
+    let problems = await service.findAll(new ListDto());
+    expect(problems.count).toBe(100);
+    expect(problems.data.length).toBe(10);
   });
 
 
