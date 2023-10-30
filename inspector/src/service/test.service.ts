@@ -7,7 +7,6 @@ export class TestService {
     constructor(@InjectRepository(TestProblem) private testRepository: Repository<TestProblem>) {}
 
     find(problemId: number, count: number): Promise<TestProblem[]> {
-        console.log(count, 'count')
         return this.testRepository.find({
             where: {problemId: problemId},
             order: {
