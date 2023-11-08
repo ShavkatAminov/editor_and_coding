@@ -33,7 +33,7 @@ export class ViewComponent implements OnInit{
   submit() {
     this.request.body['problemId'] = this.problem.id;
     this.request.body['fullTest'] = true;
-    this.codeCheck.runTest(this.request);
+    this.codeCheck.runTest(this.request, true);
   }
 
 

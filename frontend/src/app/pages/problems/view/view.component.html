@@ -5,7 +5,7 @@
     <p>Time limit: {{problem.timeLimit}} ms</p>
     <div class="text-left">{{problem.content}}</div>
   </div>
-  <div class="flex-1">
+  <div class="flex-1 space-x-2">
     <editor (valueChange)="editorValueChange($event)"></editor>
     <app-button [disabled]="codeCheck.resultStatusClass !== 'hide'" (onClick)="sendToCheck()">{{this.codeCheck.buttonCheckText}}</app-button>
     <app-button [disabled]="codeCheck.resultStatusClass !== 'hide'" (onClick)="pretestsCheck()">{{this.codeCheck.buttonPretest}}</app-button>
